@@ -1,6 +1,5 @@
 import json
 from datetime import datetime
-from birthdate_utils import isRequestValid, isBirthdateValid
 
 KEYS_LIST = ['day', 'month', 'year']
 
