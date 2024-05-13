@@ -1,4 +1,4 @@
-from lamba_function import lambda_handler
+from lambda_function import lambda_handler
 
 def test_lambda_handler():
     # Event and Context are not used in this example
