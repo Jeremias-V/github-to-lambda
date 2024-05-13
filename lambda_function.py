@@ -1,11 +1,31 @@
 import json
-import numpy as np
+from birthdate_utils import isRequestValid, isBirthdateValid
 
 def lambda_handler(event, context):
-    # TODO implement the logic
-    random_int = np.random.randint(10**6, size=2)[0]
-    return {
-        'statusCode': 200,
-        'body': json.dumps('The random number generated was ' + str(random_int)),
-        'event' : json.dumps(event)
-    }
+
+    response = {}
+
+    if not isRequestValid(event):
+        response['body'] = json.dumps('Error, at least one parameter is missing (day, month, year).')
+        response['statusCode'] = 400
+        return response
+    
+    try:
+
+        day = int(event['day'])
+        month = int(event['month'])
+        year = int(event['year'])
+
+        if isBirthdateValid(year, month, day):
+            response['body'] = json.dumps('Welcome! Your access to the casino was approved!')
+        else:
+            response['body'] = json.dumps('Sorry, you\'re not allowed to enter the casino, please try another day...')
+
+        response['statusCode'] = 200
+
+    except:
+
+        response['body'] = json.dumps('An error has ocurred, make sure to include the day, month and year of the birthdate in a valid format.')
+        response['statusCode'] = 400
+
+    return response
