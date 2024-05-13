@@ -6,5 +6,6 @@ def lambda_handler(event, context):
     random_int = np.random.randint(10**6, size=2)[0]
     return {
         'statusCode': 200,
-        'body': json.dumps('The random number generated was ' + str(random_int))
+        'body': json.dumps('The random number generated was ' + str(random_int)),
+        'event' : json.dumps(event)
     }
