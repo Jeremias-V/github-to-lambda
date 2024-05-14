@@ -38,8 +38,7 @@ def lambda_handler(event, context):
         year = int(event['year'])
 
         if isBirthdateValid(year, month, day):
-            # response['body'] = json.dumps('Welcome! Your access to the casino was approved!') make the test fail to see if the code build is aborted
-            response['body'] = json.dumps('Sorry, you\'re not allowed to enter the casino, please try another day...')
+            response['body'] = json.dumps('Welcome! Your access to the casino was approved!')
         else:
             response['body'] = json.dumps('Sorry, you\'re not allowed to enter the casino, please try another day...')
 
